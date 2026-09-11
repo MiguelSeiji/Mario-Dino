@@ -33,9 +33,24 @@ if(!gameInterval){
 //função para reiniciar o jogo
 const restartGame = () => {
     pipe.classList.add('pipe-animation');
-    pipe.style.left='';
-    pipe.style.right=0;
-    mario.src='./img/mario.gif';
-    mario.style.Width='150px'
-    mario.style.botton='0';
-}
+    pipe.style.left = '';
+    pipe.style.right = 0;
+    mario.src = './img/mario.gif';
+    mario.style.Width = '150px'
+    mario.style.botton = '0';
+//remove a margem esquerda do mario
+    mario.style.marginLeft = '';
+//oculta o botão de iniciar
+    gameOver.style.display = 'none';
+//para o áudio de Game Over
+    audioGameOver.pause();
+//reinicia o áudio de Game Over
+    audioStart.play();
+//verifica se o intervalo do jogo já não está rodando
+if(!gameInterval){
+        //cria um novo intervalo para continuar detectando colisões
+        gameInterval = setInterval(gameLoop,10);
+    }
+};
+
+//função para fazer o mario pular
